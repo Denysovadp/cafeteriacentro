@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cafetería Centro — Castellón | Café, tapas y cocina tradicional</title>
+<meta name="description" content="Cafetería Centro en pleno corazón de Castellón. Desayunos, tapas, raciones y cocina tradicional española junto a la Plaza Santa Clara y el Mercado Central.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cafe-oscuro:#2b1d14;
+    --cafe:#4a2e1f;
+    --crema:#f5ede1;
+    --crema-claro:#fbf7f0;
+    --dorado:#c89b5a;
+    --dorado-oscuro:#a67a3d;
+    --texto:#2b1d14;
+    --texto-suave:#6b5a4a;
+    --sombra:0 10px 30px rgba(43,29,20,.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--texto);
+    background:var(--crema-claro);
+    line-height:1.6;
+  }
+  h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;line-height:1.2}
+
+  /* NAV */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(251,247,240,.95);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(43,29,20,.08);
+    transition:all .3s;
+  }
+  nav{
+    max-width:1200px;margin:0 auto;
+    padding:1rem 1.5rem;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .logo{
+    font-family:'Playfair Display',serif;
+    font-size:1.4rem;font-weight:900;
+    color:var(--cafe-oscuro);
+    display:flex;align-items:center;gap:.5rem;
+  }
+  .logo span{color:var(--dorado)}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{
+    color:var(--texto);text-decoration:none;
+    font-weight:500;font-size:.95rem;
+    transition:color .3s;position:relative;
+  }
+  .nav-links a:hover{color:var(--dorado-oscuro)}
+  .nav-links a::after{
+    content:'';position:absolute;bottom:-4px;left:0;
+    width:0;height:2px;background:var(--dorado);
+    transition:width .3s;
+  }
+  .nav-links a:hover::after{width:100%}
+  .menu-toggle{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--cafe-oscuro)}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    background:
+      linear-gradient(rgba(43,29,20,.55),rgba(43,29,20,.75)),
+      url('https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=1600') center/cover;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;color:#fff;
+    padding:6rem 1.5rem 3rem;
+    position:relative;
+  }
+  .hero-content{max-width:800px;animation:fadeUp 1s ease}
+  .hero-tag{
+    display:inline-block;
+    padding:.4rem 1.2rem;
+    background:rgba(200,155,90,.2);
+    border:1px solid var(--dorado);
+    border-radius:50px;
+    font-size:.85rem;letter-spacing:2px;text-transform:uppercase;
+    color:var(--dorado);margin-bottom:1.5rem;
+  }
+  .hero h1{
+    font-size:clamp(2.5rem,6vw,4.5rem);
+    margin-bottom:1rem;
+    text-shadow:0 2px 20px rgba(0,0,0,.3);
+  }
+  .hero h1 span{color:var(--dorado);font-style:italic}
+  .hero p{
+    font-size:1.2rem;margin-bottom:2.5rem;
+    opacity:.95;max-width:600px;margin-left:auto;margin-right:auto;
+  }
+  .hero-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .btn{
+    padding:.9rem 2rem;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:600;font-size:.95rem;
+    transition:all .3s;
+    display:inline-flex;align-items:center;gap:.5rem;
+    border:2px solid transparent;cursor:pointer;
+  }
+  .btn-primary{background:var(--dorado);color:#fff}
+  .btn-primary:hover{background:var(--dorado-oscuro);transform:translateY(-2px);box-shadow:0 10px 25px rgba(200,155,90,.4)}
+  .btn-outline{background:transparent;color:#fff;border-color:#fff}
+  .btn-outline:hover{background:#fff;color:var(--cafe-oscuro)}
+
+  .scroll-indicator{
+    position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+    color:#fff;font-size:1.5rem;animation:bounce 2s infinite;
+  }
+
+  /* SECCIONES */
+  section{padding:5rem 1.5rem}
+  .container{max-width:1200px;margin:0 auto}
+  .section-header{text-align:center;margin-bottom:3.5rem}
+  .section-tag{
+    color:var(--dorado-oscuro);
+    font-size:.85rem;letter-spacing:3px;text-transform:uppercase;
+    font-weight:600;margin-bottom:.8rem;display:block;
+  }
+  .section-header h2{
+    font-size:clamp(2rem,4vw,3rem);
+    color:var(--cafe-oscuro);margin-bottom:1rem;
+  }
+  .section-header p{color:var(--texto-suave);max-width:600px;margin:0 auto}
+
+  /* SOBRE NOSOTROS */
+  .about{background:var(--crema-claro)}
+  .about-grid{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:4rem;align-items:center;
+  }
+  .about-image{
+    position:relative;border-radius:12px;overflow:hidden;
+    box-shadow:var(--sombra);
+  }
+  .about-image img{width:100%;height:500px;object-fit:cover;display:block}
+  .about-image::before{
+    content:'';position:absolute;top:20px;left:20px;right:-20px;bottom:-20px;
+    border:3px solid var(--dorado);border-radius:12px;z-index:-1;
+  }
+  .about-text h2{font-size:2.5rem;margin-bottom:1.5rem;color:var(--cafe-oscuro)}
+  .about-text p{margin-bottom:1.2rem;color:var(--texto-suave)}
+  .features{
+    display:grid;grid-template-columns:repeat(2,1fr);
+    gap:1rem;margin-top:2rem;
+  }
+  .feature{
+    display:flex;align-items:center;gap:.8rem;
+    padding:1rem;background:#fff;border-radius:10px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+  }
+  .feature-icon{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--crema);color:var(--dorado-oscuro);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.2rem;flex-shrink:0;
+  }
+  .feature-text{font-weight:500;font-size:.9rem}
+
+  /* GALERÍA */
+  .gallery{background:var(--crema-claro)}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-template-rows:200px 200px;
+    gap:1rem;
+  }
+  .gallery-item{
+    overflow:hidden;border-radius:12px;
+    position:relative;cursor:pointer;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+  }
+  .gallery-item img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .5s;
+  }
+  .gallery-item:hover img{transform:scale(1.08)}
+  .gallery-item::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(43,29,20,.5),transparent);
+    opacity:0;transition:opacity .3s;
+  }
+  .gallery-item:hover::after{opacity:1}
+  .gallery-item.big{grid-column:span 2;grid-row:span 2}
+
+  /* MENÚ */
+  .menu{background:var(--crema)}
+  .menu-categories{
+    display:flex;justify-content:center;gap:.5rem;
+    flex-wrap:wrap;margin-bottom:3rem;
+  }
+  .category-btn{
+    padding:.6rem 1.5rem;border:2px solid var(--cafe);
+    background:transparent;color:var(--cafe);
+    border-radius:50px;cursor:pointer;font-weight:500;
+    transition:all .3s;font-size:.9rem;
+  }
+  .category-btn.active,.category-btn:hover{
+    background:var(--cafe);color:#fff;
+  }
+  .menu-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:2rem;
+  }
+  .menu-item{
+    background:#fff;padding:1.8rem;border-radius:12px;
+    box-shadow:0 4px 20px rgba(0,0,0,.05);
+    transition:all .3s;border-left:4px solid transparent;
+  }
+  .menu-item:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(0,0,0,.1);
+    border-left-color:var(--dorado);
+  }
+  .menu-item-header{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:.5rem;gap:1rem;
+  }
+  .menu-item h3{font-size:1.3rem;color:var(--cafe-oscuro)}
+  .menu-item .price{
+    color:var(--dorado-oscuro);font-weight:700;
+    font-family:'Playfair Display',serif;font-size:1.2rem;
+    white-space:nowrap;
+  }
+  .menu-item p{color:var(--texto-suave);font-size:.95rem}
+  .menu-item .badge{
+    display:inline-block;margin-top:.8rem;
+    padding:.2rem .7rem;background:var(--crema);
+    color:var(--dorado-oscuro);border-radius:20px;
+    font-size:.75rem;font-weight:600;
+  }
+
+  /* HORARIOS */
+  .hours{
+    background:linear-gradient(135deg,var(--cafe-oscuro),var(--cafe));
+    color:#fff;
+  }
+  .hours .section-header h2{color:#fff}
+  .hours .section-header p{color:rgba(255,255,255,.8)}
+  .hours .section-tag{color:var(--dorado)}
+  .hours-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:3rem;
+    max-width:900px;margin:0 auto;
+  }
+  .hours-card{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.1);
+    padding:2.5rem;border-radius:15px;
+    backdrop-filter:blur(10px);
+  }
+  .hours-card h3{
+    color:var(--dorado);font-size:1.5rem;margin-bottom:1.5rem;
+    display:flex;align-items:center;gap:.7rem;
+  }
+  .hours-list{list-style:none}
+  .hours-list li{
+    display:flex;justify-content:space-between;
+    padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.1);
+  }
+  .hours-list li:last-child{border-bottom:none}
+  .hours-list .day{font-weight:500}
+  .hours-list .time{color:var(--dorado);font-weight:600}
+  .hours-list .closed{color:#ff8a8a}
+  .price-info{
+    margin-top:1.5rem;padding:1rem;
+    background:rgba(200,155,90,.15);
+    border-radius:10px;text-align:center;
+  }
+  .price-info strong{color:var(--dorado);font-size:1.3rem}
+
+  /* UBICACIÓN */
+  .location{background:var(--crema-claro)}
+  .location-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:3rem;
+    align-items:stretch;
+  }
+  .map-container{
+    border-radius:15px;overflow:hidden;
+    box-shadow:var(--sombra);min-height:450px;
+  }
+  .map-container iframe{width:100%;height:100%;border:0;display:block}
+  .location-info{display:flex;flex-direction:column;gap:1.5rem}
+  .info-card{
+    background:#fff;padding:1.5rem;border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+    display:flex;gap:1rem;align-items:flex-start;
+    transition:transform .3s;
+  }
+  .info-card:hover{transform:translateX(5px)}
+  .info-icon{
+    width:50px;height:50px;border-radius:12px;
+    background:var(--crema);color:var(--dorado-oscuro);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.4rem;flex-shrink:0;
+  }
+  .info-card h4{color:var(--cafe-oscuro);margin-bottom:.3rem;font-size:1.1rem}
+  .info-card p,.info-card a{color:var(--texto-suave);text-decoration:none;font-size:.95rem}
+  .info-card a:hover{color:var(--dorado-oscuro)}
+
+  /* VALORACIONES */
+  .reviews{background:var(--crema)}
+  .rating-big{
+    text-align:center;margin-bottom:3rem;
+    padding:2rem;background:#fff;border-radius:15px;
+    box-shadow:var(--sombra);max-width:400px;margin-left:auto;margin-right:auto;
+  }
+  .rating-number{
+    font-family:'Playfair Display',serif;
+    font-size:4rem;font-weight:900;color:var(--cafe-oscuro);
+    line-height:1;
+  }
+  .stars{color:var(--dorado);font-size:1.5rem;margin:.5rem 0}
+  .rating-count{color:var(--texto-suave);font-size:.9rem}
+  .reviews-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;
+  }
+  .review{
+    background:#fff;padding:1.8rem;border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+  }
+  .review-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+  .review-avatar{
+    width:45px;height:45px;border-radius:50%;
+    background:var(--dorado);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;
+  }
+  .review-name{font-weight:600;color:var(--cafe-oscuro)}
+  .review-stars{color:var(--dorado);font-size:.9rem}
+  .review p{color:var(--texto-suave);font-style:italic;font-size:.95rem}
+
+  /* RESERVA */
+  .reservation{
+    background:
+      linear-gradient(rgba(43,29,20,.88),rgba(43,29,20,.88)),
+      url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600') center/cover fixed;
+    color:#fff;
+  }
+  .reservation .section-header h2{color:#fff}
+  .reservation .section-header p{color:rgba(255,255,255,.85)}
+  .reservation .section-tag{color:var(--dorado)}
+  .reservation-wrapper{
+    max-width:700px;margin:0 auto;
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+    padding:2.5rem;
+  }
+  .form-row{
+    display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+    margin-bottom:1rem;
+  }
+  .form-group{margin-bottom:1rem}
+  .form-group label{
+    display:block;margin-bottom:.5rem;
+    font-size:.9rem;font-weight:500;
+    color:var(--dorado);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea{
+    width:100%;padding:.9rem 1rem;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:10px;color:#fff;
+    font-family:inherit;font-size:.95rem;
+    transition:all .3s;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder{
+    color:rgba(255,255,255,.5);
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus{
+    outline:none;
+    border-color:var(--dorado);
+    background:rgba(255,255,255,.15);
+  }
+  .form-group select option{background:var(--cafe-oscuro);color:#fff}
+  .form-group textarea{resize:vertical;min-height:80px}
+  .reservation-btn{
+    width:100%;padding:1.1rem;
+    background:#25D366;color:#fff;
+    border:none;border-radius:50px;
+    font-size:1rem;font-weight:600;
+    cursor:pointer;transition:all .3s;
+    display:flex;align-items:center;justify-content:center;gap:.6rem;
+    margin-top:1rem;
+  }
+  .reservation-btn:hover{
+    background:#1da851;
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(37,211,102,.4);
+  }
+  .reservation-alt{
+    text-align:center;margin-top:1.5rem;
+    padding-top:1.5rem;
+    border-top:1px solid rgba(255,255,255,.15);
+    color:rgba(255,255,255,.8);
+    font-size:.9rem;
+  }
+  .reservation-alt a{
+    color:var(--dorado);text-decoration:none;
+    font-weight:600;
+  }
+  .reservation-alt a:hover{text-decoration:underline}
+
+  /* FOOTER */
+  footer{
+    background:var(--cafe-oscuro);color:#fff;
+    padding:3rem 1.5rem 1.5rem;
+  }
+  .footer-grid{
+    max-width:1200px;margin:0 auto;
+    display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:2rem;margin-bottom:2rem;
+  }
+  .footer-col h4{
+    color:var(--dorado);margin-bottom:1rem;font-size:1.1rem;
+    font-family:'Inter',sans-serif;font-weight:600;
+  }
+  .footer-col p,.footer-col a{
+    color:rgba(255,255,255,.7);text-decoration:none;
+    font-size:.9rem;margin-bottom:.5rem;display:block;
+    transition:color .3s;
+  }
+  .footer-col a:hover{color:var(--dorado)}
+  .social-links{display:flex;gap:.8rem;margin-top:1rem}
+  .social-links a{
+    width:40px;height:40px;border-radius:50%;
+    background:rgba(255,255,255,.1);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:1.1rem;margin:0;
+  }
+  .social-links a:hover{background:var(--dorado);transform:translateY(-3px)}
+  .footer-bottom{
+    max-width:1200px;margin:0 auto;
+    padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);
+    text-align:center;color:rgba(255,255,255,.5);font-size:.85rem;
+  }
+
+  /* BOTONES FLOTANTES */
+  .floating-buttons{
+    position:fixed;bottom:20px;right:20px;z-index:99;
+    display:flex;flex-direction:column;gap:.8rem;
+  }
+  .float-btn{
+    width:55px;height:55px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:1.4rem;text-decoration:none;
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
+    transition:all .3s;
+  }
+  .float-btn:hover{transform:scale(1.1)}
+  .float-btn.whatsapp{background:#25D366}
+  .float-btn.phone{background:var(--dorado)}
+
+  /* ANIMACIONES */
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(30px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  @keyframes bounce{
+    0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0)}
+    40%{transform:translateX(-50%) translateY(-10px)}
+    60%{transform:translateX(-50%) translateY(-5px)}
+  }
+  .fade-in{opacity:0;transform:translateY(30px);transition:all .8s}
+  .fade-in.visible{opacity:1;transform:translateY(0)}
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .nav-links{
+      display:none;position:absolute;top:100%;left:0;right:0;
+      background:var(--crema-claro);flex-direction:column;
+      padding:1.5rem;gap:1rem;box-shadow:var(--sombra);
+    }
+    .nav-links.active{display:flex}
+    .menu-toggle{display:block}
+    .about-grid,.hours-grid,.location-grid{grid-template-columns:1fr;gap:2rem}
+    .about-image img{height:350px}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:1.5rem}
+    .features{grid-template-columns:1fr}
+    .gallery-grid{
+      grid-template-columns:repeat(2,1fr);
+      grid-template-rows:180px 180px 180px;
+    }
+    .gallery-item.big{grid-column:span 2;grid-row:span 1}
+    .form-row{grid-template-columns:1fr}
+    section{padding:3.5rem 1.5rem}
+  }
+  @media(max-width:500px){
+    .footer-grid{grid-template-columns:1fr}
+    .hero-buttons{flex-direction:column;width:100%}
+    .btn{width:100%;justify-content:center}
+    .reservation-wrapper{padding:1.5rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav>
+    <div class="logo">☕ Cafetería <span>Centro</span></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#carta">Carta</a></li>
+      <li><a href="#horarios">Horarios</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+      <li><a href="#reserva">Reservar</a></li>
+    </ul>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <span class="hero-tag">Desde Castellón con sabor</span>
+    <h1>Un clásico en el <span>corazón</span> de la ciudad</h1>
+    <p>Café de siempre, tapas de autor y cocina tradicional española junto a la Plaza Santa Clara y el Mercado Central.</p>
+    <div class="hero-buttons">
+      <a href="#reserva" class="btn btn-primary">📅 Reservar mesa</a>
+      <a href="#carta" class="btn btn-outline">Ver nuestra carta</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">↓</div>
+</section>
+
+<!-- SOBRE NOSOTROS -->
+<section class="about" id="nosotros">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image fade-in">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800" alt="Interior de Cafetería Centro">
+      </div>
+      <div class="about-text fade-in">
+        <span class="section-tag">Sobre nosotros</span>
+        <h2>Más que una cafetería, un punto de encuentro</h2>
+        <p>En <strong>Cafetería Centro</strong> llevamos años sirviendo desayunos, almuerzos y tapas a los castellonenses que buscan calidad, tradición y un trato cercano. Nuestra ubicación privilegiada, junto al Mercado Central, nos convierte en la parada perfecta para empezar el día o disfrutar de una buena sobremesa.</p>
+        <p>Trabajamos con producto fresco de proximidad para ofrecerte desde un café con leche recién hecho hasta unas gambas al ajillo de escándalo.</p>
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon">☕</div>
+            <div class="feature-text">Café de especialidad</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🍳</div>
+            <div class="feature-text">Cocina tradicional</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🌿</div>
+            <div class="feature-text">Terraza acogedora</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">♿</div>
+            <div class="feature-text">Accesible</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="gallery" id="galeria">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">Nuestro local</span>
+      <h2>Un rincón con encanto</h2>
+      <p>Así es Cafetería Centro por dentro y por fuera. Ven a comprobarlo.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item big fade-in">
+        <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?w=1000" alt="Terraza Cafetería Centro">
+      </div>
+      <div class="gallery-item fade-in">
+        <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=600" alt="Barra de café">
+      </div>
+      <div class="gallery-item fade-in">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600" alt="Rincón del local">
+      </div>
+      <div class="gallery-item fade-in">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600" alt="Café con leche">
+      </div>
+      <div class="gallery-item fade-in">
+        <img src="https://images.unsplash.com/photo-1626200419199-391ae4be7a41?w=600" alt="Tapas españolas">
+      </div>
+      <div class="gallery-item fade-in">
+        <img src="https://images.unsplash.com/photo-1626200926749-ccaab8tried?w=600" onerror="this.src='https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600'" alt="Tortilla de patata">
+      </div>
+      <div class="gallery-item fade-in">
+        <img src="https://images.unsplash.com/photo-1606471191009-63994c53433b?w=600" alt="Gambas al ajillo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARTA -->
+<section class="menu" id="carta">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">Nuestra carta</span>
+      <h2>Sabores que enamoran</h2>
+      <p>Una selección de nuestros platos más pedidos. Precio orientativo por persona: 10–20 €.</p>
+    </div>
+
+    <div class="menu-categories">
+      <button class="category-btn active" onclick="filterMenu('all',this)">Todo</button>
+      <button class="category-btn" onclick="filterMenu('desayunos',this)">Desayunos</button>
+      <button class="category-btn" onclick="filterMenu('tapas',this)">Tapas</button>
+      <button class="category-btn" onclick="filterMenu('raciones',this)">Raciones</button>
+      <button class="category-btn" onclick="filterMenu('postres',this)">Postres</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+      <div class="menu-item" data-cat="desayunos">
+        <div class="menu-item-header"><h3>☕ Café con leche</h3></div>
+        <p>Nuestro café de siempre, recién hecho. La forma perfecta de empezar el día.</p>
+        <span class="badge">Clásico</span>
+      </div>
+      <div class="menu-item" data-cat="desayunos">
+        <div class="menu-item-header"><h3>🥐 Desayuno completo</h3></div>
+        <p>Café + tostada o bollería artesana. La combinación favorita de nuestros clientes.</p>
+        <span class="badge">Mañanero</span>
+      </div>
+      <div class="menu-item" data-cat="tapas">
+        <div class="menu-item-header"><h3>🥔 Patatas bravas</h3><span class="price">5,50 €</span></div>
+        <p>Patatas crujientes con nuestra salsa brava casera. Un imprescindible.</p>
+        <span class="badge">⭐ Top ventas</span>
+      </div>
+      <div class="menu-item" data-cat="tapas">
+        <div class="menu-item-header"><h3>🧆 Croquetas caseras</h3><span class="price">6,50 €</span></div>
+        <p>De jamón ibérico, elaboradas cada día en nuestra cocina. Cremosas por dentro.</p>
+        <span class="badge">Casero</span>
+      </div>
+      <div class="menu-item" data-cat="tapas">
+        <div class="menu-item-header"><h3>🍳 Tortilla de patata</h3><span class="price">7,00 €</span></div>
+        <p>La auténtica tortilla española, jugosa y con el punto exacto de cuajado.</p>
+      </div>
+      <div class="menu-item" data-cat="raciones">
+        <div class="menu-item-header"><h3>🦐 Gambas al ajillo</h3><span class="price">12,00 €</span></div>
+        <p>Gambas frescas salteadas con ajo, guindilla y aceite de oliva virgen extra.</p>
+        <span class="badge">⭐ Especialidad</span>
+      </div>
+      <div class="menu-item" data-cat="raciones">
+        <div class="menu-item-header"><h3>🦑 Calamares a la plancha</h3><span class="price">11,50 €</span></div>
+        <p>Calamares tiernos hechos a la plancha con un toque de limón. Del mar a tu mesa.</p>
+      </div>
+      <div class="menu-item" data-cat="raciones">
+        <div class="menu-item-header"><h3>🥘 Sepia a la plancha</h3><span class="price">12,50 €</span></div>
+        <p>Especialidad local. Sepia fresca del Mediterráneo con alioli casero.</p>
+        <span class="badge">🌊 Producto local</span>
+      </div>
+      <div class="menu-item" data-cat="raciones">
+        <div class="menu-item-header"><h3>🥗 Ensalada de la casa</h3><span class="price">8,50 €</span></div>
+        <p>Mix de lechugas, tomate, cebolla, atún, huevo y aceitunas. Fresca y ligera.</p>
+      </div>
+      <div class="menu-item" data-cat="tapas">
+        <div class="menu-item-header"><h3>🥪 Bocadillos variados</h3></div>
+        <p>Jamón serrano, lomo, tortilla, queso… Todos en pan recién horneado.</p>
+      </div>
+      <div class="menu-item" data-cat="postres">
+        <div class="menu-item-header"><h3>🍰 Postres caseros</h3><span class="price">4,50 €</span></div>
+        <p>Tarta de la abuela, flan, arroz con leche… Pregunta por los disponibles hoy.</p>
+      </div>
+      <div class="menu-item" data-cat="postres">
+        <div class="menu-item-header"><h3>🍨 Helados artesanos</h3><span class="price">3,50 €</span></div>
+        <p>Variedad de sabores. El broche perfecto para cualquier comida.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORARIOS -->
+<section class="hours" id="horarios">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">Cuándo visitarnos</span>
+      <h2>Horarios y precios</h2>
+      <p>Te esperamos de lunes a sábado para desayunar, tapear o disfrutar de una buena comida.</p>
+    </div>
+    <div class="hours-grid">
+      <div class="hours-card fade-in">
+        <h3>🕐 Horario semanal</h3>
+        <ul class="hours-list">
+          <li><span class="day">Lunes</span><span class="time">07:00 – 22:00</span></li>
+          <li><span class="day">Martes</span><span class="time">07:00 – 22:00</span></li>
+          <li><span class="day">Miércoles</span><span class="time">07:00 – 22:00</span></li>
+          <li><span class="day">Jueves</span><span class="time">07:00 – 22:00</span></li>
+          <li><span class="day">Viernes</span><span class="time">07:00 – 22:00</span></li>
+          <li><span class="day">Sábado</span><span class="time">07:00 – 22:00</span></li>
+          <li><span class="day">Domingo</span><span class="time closed">Cerrado</span></li>
+        </ul>
+      </div>
+      <div class="hours-card fade-in">
+        <h3>💰 Precios orientativos</h3>
+        <p style="margin-bottom:1rem;color:rgba(255,255,255,.8)">Nuestros precios son accesibles y adaptados a cada momento del día:</p>
+        <ul class="hours-list">
+          <li><span class="day">Desayuno</span><span class="time">desde 2,50 €</span></li>
+          <li><span class="day">Tapas</span><span class="time">4 – 8 €</span></li>
+          <li><span class="day">Raciones</span><span class="time">8 – 14 €</span></li>
+          <li><span class="day">Menú del día</span><span class="time">consulta</span></li>
+        </ul>
+        <div class="price-info">
+          <p>Ticket medio por persona</p>
+          <strong>10 – 20 €</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section class="location" id="ubicacion">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">Encuéntranos</span>
+      <h2>En pleno centro de Castellón</h2>
+      <p>A dos pasos de la Plaza Santa Clara y el Mercado Central. Ven a vernos.</p>
+    </div>
+    <div class="location-grid">
+      <div class="map-container fade-in">
+        <iframe
+          src="https://www.google.com/maps?q=Carrer+de+Vera+8+12001+Castell%C3%B3+de+la+Plana&output=embed"
+          loading="lazy" allowfullscreen></iframe>
+      </div>
+      <div class="location-info">
+        <div class="info-card fade-in">
+          <div class="info-icon">📍</div>
+          <div>
+            <h4>Dirección</h4>
+            <p>Carrer de Vera, 8<br>12001 Castelló de la Plana</p>
+          </div>
+        </div>
+        <div class="info-card fade-in">
+          <div class="info-icon">📞</div>
+          <div>
+            <h4>Teléfonos</h4>
+            <p><a href="tel:964226004">964 22 60 04</a><br>
+            <a href="tel:615244873">615 24 48 73</a></p>
+          </div>
+        </div>
+        <div class="info-card fade-in">
+          <div class="info-icon">🚗</div>
+          <div>
+            <h4>Cómo llegar</h4>
+            <p>En pleno centro, junto a la Plaza Santa Clara y el Mercado Central. Fácil acceso en transporte público y coche.</p>
+          </div>
+        </div>
+        <div class="info-card fade-in">
+          <div class="info-icon">🛵</div>
+          <div>
+            <h4>Servicios</h4>
+            <p>Terraza · Comida para llevar · Entrega a domicilio · Reserva previa · Accesible</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALORACIONES -->
+<section class="reviews">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">Opiniones</span>
+      <h2>Lo que dicen nuestros clientes</h2>
+    </div>
+    <div class="rating-big fade-in">
+      <div class="rating-number">4,0</div>
+      <div class="stars">★★★★☆</div>
+      <div class="rating-count">Basado en más de 570 reseñas en Google</div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review fade-in">
+        <div class="review-header">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">María G.</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+        </div>
+        <p>"Las gambas al ajillo están increíbles y el trato es muy familiar. Mi sitio favorito para tapear en el centro."</p>
+      </div>
+      <div class="review fade-in">
+        <div class="review-header">
+          <div class="review-avatar">J</div>
+          <div>
+            <div class="review-name">Jordi P.</div>
+            <div class="review-stars">★★★★☆</div>
+          </div>
+        </div>
+        <p>"Vengo cada mañana a desayunar. El café es excelente y la tortilla de patata, de las mejores de Castellón."</p>
+      </div>
+      <div class="review fade-in">
+        <div class="review-header">
+          <div class="review-avatar">L</div>
+          <div>
+            <div class="review-name">Laura R.</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+        </div>
+        <p>"Las croquetas caseras y las bravas son un 10. La terraza en verano es un lujo. Muy recomendable."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVA -->
+<section class="reservation" id="reserva">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">Reserva tu mesa</span>
+      <h2>Te estamos esperando</h2>
+      <p>Rellena el formulario y te confirmaremos la reserva por WhatsApp al instante.</p>
+    </div>
+    <div class="reservation-wrapper fade-in">
+      <form id="reservationForm" onsubmit="enviarReserva(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre completo *</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono *</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="600 000 000" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fecha">Fecha *</label>
+            <input type="date" id="fecha" name="fecha" required>
+          </div>
+          <div class="form-group">
+            <label for="hora">Hora *</label>
+            <select id="hora" name="hora" required>
+              <option value="">Selecciona hora</option>
+              <option value="07:00">07:00</option>
+              <option value="08:00">08:00</option>
+              <option value="09:00">09:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="13:30">13:30</option>
+              <option value="14:00">14:00</option>
+              <option value="14:30">14:30</option>
+              <option value="15:00">15:00</option>
+              <option value="19:00">19:00</option>
+              <option value="19:30">19:30</option>
+              <option value="20:00">20:00</option>
+              <option value="20:30">20:30</option>
+              <option value="21:00">21:00</option>
+              <option value="21:30">21:30</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="personas">Nº de personas *</label>
+            <select id="personas" name="personas" required>
+              <option value="">Selecciona</option>
+              <option value="1">1 persona</option>
+              <option value="2">2 personas</option>
+              <option value="3">3 personas</option>
+              <option value="4">4 personas</option>
+              <option value="5">5 personas</option>
+              <option value="6">6 personas</option>
+              <option value="7">7 personas</option>
+              <option value="8">8 personas</option>
+              <option value="9+">Más de 8</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="zona">Zona preferida</label>
+            <select id="zona" name="zona">
+              <option value="indiferente">Sin preferencia</option>
+              <option value="terraza">Terraza</option>
+              <option value="interior">Interior</option>
+              <option value="barra">Barra</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="comentarios">Comentarios (opcional)</label>
+          <textarea id="comentarios" name="comentarios" placeholder="Alergias, celebración especial, trona para niños..."></textarea>
+        </div>
+        <button type="submit" class="reservation-btn">
+          💬 Confirmar reserva por WhatsApp
+        </button>
+      </form>
+      <div class="reservation-alt">
+        ¿Prefieres llamarnos? <a href="tel:964226004">📞 964 22 60 04</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>☕ Cafetería Centro</h4>
+      <p>Un clásico en el corazón de Castellón. Café, tapas y cocina tradicional desde hace años.</p>
+      <div class="social-links">
+        <a href="https://instagram.com/cafecentrounclasico" target="_blank" aria-label="Instagram">📷</a>
+        <a href="https://facebook.com/cafecentrounclasico" target="_blank" aria-label="Facebook">f</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Visítanos</h4>
+      <a href="#ubicacion">Carrer de Vera, 8</a>
+      <a href="#ubicacion">12001 Castelló</a>
+      <a href="#horarios">Ver horarios</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <a href="tel:964226004">964 22 60 04</a>
+      <a href="tel:615244873">615 24 48 73</a>
+      <a href="https://wa.me/34615244873">WhatsApp</a>
+    </div>
+    <div class="footer-col">
+      <h4>Extras</h4>
+      <a href="https://www.toogoodtogo.com" target="_blank">Too Good To Go</a>
+      <a href="#carta">Ver carta</a>
+      <a href="#reserva">Reservar mesa</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Cafetería Centro · Castellón de la Plana · Todos los derechos reservados</p>
+  </div>
+</footer>
+
+<!-- BOTONES FLOTANTES -->
+<div class="floating-buttons">
+  <a href="https://wa.me/34615244873" class="float-btn whatsapp" target="_blank" aria-label="WhatsApp">💬</a>
+  <a href="tel:964226004" class="float-btn phone" aria-label="Llamar">📞</a>
+</div>
+
+<script>
+  // Menú móvil
+  function toggleMenu(){
+    document.getElementById('navLinks').classList.toggle('active');
+  }
+  document.querySelectorAll('.nav-links a').forEach(link=>{
+    link.addEventListener('click',()=>{
+      document.getElementById('navLinks').classList.remove('active');
+    });
+  });
+
+  // Filtro de carta
+  function filterMenu(cat,btn){
+    document.querySelectorAll('.category-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.menu-item').forEach(item=>{
+      if(cat==='all'||item.dataset.cat===cat){
+        item.style.display='block';
+        item.style.animation='fadeUp .5s ease';
+      }else{
+        item.style.display='none';
+      }
+    });
+  }
+
+  // Animaciones al hacer scroll
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  },{threshold:0.15});
+  document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+  // Header al hacer scroll
+  window.addEventListener('scroll',()=>{
+    const header=document.querySelector('header');
+    if(window.scrollY>50){
+      header.style.boxShadow='0 2px 20px rgba(0,0,0,.08)';
+    }else{
+      header.style.boxShadow='none';
+    }
+  });
+
+  // Fecha mínima = hoy
+  const hoy = new Date().toISOString().split('T')[0];
+  document.getElementById('fecha').setAttribute('min', hoy);
+
+  // ENVIAR RESERVA POR WHATSAPP
+  function enviarReserva(e){
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value;
+    const telefono = document.getElementById('telefono').value;
+    const fecha = document.getElementById('fecha').value;
+    const hora = document.getElementById('hora').value;
+    const personas = document.getElementById('personas').value;
+    const zona = document.getElementById('zona').value;
+    const comentarios = document.getElementById('comentarios').value;
+
+    // Formatear fecha a formato legible
+    const fechaObj = new Date(fecha);
+    const opciones = { weekday:'long', year:'numeric', month:'long', day:'numeric' };
+    const fechaLegible = fechaObj.toLocaleDateString('es-ES', opciones);
+
+    // Construir mensaje
+    let mensaje = `¡Hola! 👋 Me gustaría reservar mesa en Cafetería Centro:\n\n`;
+    mensaje += `👤 *Nombre:* ${nombre}\n`;
+    mensaje += `📞 *Teléfono:* ${telefono}\n`;
+    mensaje += `📅 *Fecha:* ${fechaLegible}\n`;
+    mensaje += `🕐 *Hora:* ${hora}\n`;
+    mensaje += `👥 *Personas:* ${personas}\n`;
+    mensaje += `🪑 *Zona:* ${zona}\n`;
+    if(comentarios.trim()){
+      mensaje += `💬 *Comentarios:* ${comentarios}\n`;
+    }
+    mensaje += `\n¡Gracias!`;
+
+    // URL de WhatsApp con mensaje codificado
+    const telefonoWhatsApp = '34615244873';
+    const url = `https://wa.me/${telefonoWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
+    // Abrir WhatsApp
+    window.open(url, '_blank');
+  }
+</script>
+
+</body>
+</html>
